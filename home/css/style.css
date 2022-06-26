@@ -3,6 +3,11 @@ body{
     scroll-behavior: smooth;
 }
 
+.mdui-row{
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
 .anchor-element {
     position: absolute;
     top: -180px;
