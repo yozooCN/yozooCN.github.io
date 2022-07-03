@@ -7,7 +7,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="云彩影视" />
-<script type="text/javascript">window.onload=function(){window.location.href='http://114.132.238.218:6688/';}</script>
+<!-- <script type="text/javascript">window.onload=function(){window.location.href='http://114.132.238.218:6688/';}</script> -->
+<script type="text/javascript">
+  /**
+  * 获取当前窗口的参数
+  * key,参数的名称
+  */
+ function getUrlParam(key, uurl){
+   if (uurl == null || uurl == ""){
+    uurl = window.location.href;
+   }
+   var url = decodeURI(uurl);
+   var paramMap = {};
+   var firstIndex = url.indexOf("?");
+   var paramStr = url.substring(firstIndex+1);
+   if (paramStr && paramStr != "") {
+     var index = paramStr.indexOf("?") //再次检查参数，避免后面有参数的值是访问地址
+     var lastVal = "";
+     var sflag = false; //标识有第二个问号
+     if(index>0){
+       var urlTemp = paramStr.substring(0, index);
+       var lastIndex = urlTemp.lastIndexOf("=");
+       lastVal = paramStr.substring(lastIndex+1);
+       paramStr = paramStr.substring(0, lastIndex+1);
+     }
+     var paramStrArr = paramStr.split("&");
+     for (var i = 0; i < paramStrArr.length; i++) {
+       var temp = paramStrArr[i];
+       var indexE = temp.indexOf("=");
+       var pKey = temp.substring(0, indexE);
+       var pVal = "";
+       if(sflag && i==(paramStrArr.length-1)){
+         pVal = lastVal;
+       }else{
+         pVal = temp.substring(indexE + 1);
+       }
+       paramMap[pKey] = pVal;
+     }
+   }
+   return paramMap;
+ }
+var paramMaps = getUrlParam();
+var s = paramMaps['s'];
+console.log(paramMaps);
+console.log(s);
+  window.onload = function(){
+    window.location.href = 'http://114.132.238.218:6688/index.php/vod/search/wd/'+s+'.html'
+  }
+  if (s && s != "") {
+    window.location.href = 'http://114.132.238.218:6688/index.php/vod/search/wd/'+s+'.html';
+  }else{
+    window.location.href = 'http://114.132.238.218:6688/';
+  }
+ // window.onload = function(getUrlParam('s',window.location.href));
+
+</script>
 </head>
 <body style="margin:0;padding:0;border:none;outline:none">
 
